@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorithm</title> 
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: .5rem 1rem;
+            font-size: 1.5rem;
+            cursor: pointer;
+            letter-spacing: 2px;
+            text-transform: capitalize;
+            margin: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+    <button onclick="colulate()">Algorithm</button>
+
+    <script>
+
+        function colulate(){
+        
+            while(true){
+
+                const promt = prompt(`01: Algorithm ຫານເລກ\n02: ຄຳນວນຈ່າຍຄ່າພາສີຂອງພະນັກງານ\n03: ອອກ Exit`);
+
+                if(!promt){
+                    alert(`ກະລຸນາປ້ອມຄ່າ`);
+                    colulate();
+                    return;
+                }
+
+                if(promt.includes("1" || "01")) algorithm1();
+                if(promt.includes("2" || "02")) algorithm2();
+                if(promt.toLowerCase() === "e" || promt.includes("4" || "04")) return;
+            }
+        }
+
+
+        // ******************************************************************************
+
+
+        function algorithm1(){
+
+            // ຕົວຕັ້ງຫານ
+            const denominator1 = parseFloat(prompt("Denominator 1: { ຕົວຕັ້ງຫານ }"));
+
+            if(isNaN(denominator1)) return checkDenominator(algorithm1, "ກະລຸນາໃສ່ຕົວເລກ");
+
+            if(denominator1 === 0) return denominatorTwo(denominator1, algorithm1);
+
+            if(!denominator1) return checkDenominator(algorithm1, "ກະລຸນາປ້ອມຄ່າ");
+
+            denominatorTwo(denominator1, algorithm1);
+        }
+        
+        function checkDenominator(callback, text){
+            alert(text);
+            callback();
+        }
+        
+        function denominatorTwo(denominator1, algorithm1){
+            
+            // ຕົວຫານ
+            const denominator2 = parseFloat(prompt("Denominator 2: { ຕົວຫານ }"));
+
+            if(isNaN(denominator2)) return checkDenominator(algorithm1, "ກະລຸນາໃສ່ຕົວເລກ");
+    
+            if(denominator2 == 0 || !denominator2){
+                checkDenominator(algorithm1, `ບໍ່ສາມາດຫານຈຳນວນ ${denominator1} ດ້ວຍ 0 ໄດ້`);
+                return;
+            };
+
+            const result = denominator1 / denominator2;
+            alert(`result is : ${result}`);
+        }
+
+        // ******************************************************************************
+
+        let precent = 0;
+
+        function algorithm2(){
+
+            // salaryOfEmployees;
+            const s = parseInt(prompt(`Salary of employees: { ເງິນເດືອນຂອງພະນັກງານ }`));
+            
+            if(isNaN(s)) return checkDenominator(algorithm2, "ກະລຸນາໃສ່ຕົວເລກ");
+
+            if(s < 10 ** 6 - 1) return;
+        
+            if(s >= 10 ** 6 && s <= 10 ** 6 * 2) salaryOfEmployeesColulate(s, precent, 0);
+            
+            else if(s >= (10 ** 6 * 2 + 1) && s <= 10 ** 6 * 4) salaryOfEmployeesColulate(s, precent, 5);
+            
+            else if(s >= (10 ** 6 * 4 + 1) && s <= 10 ** 6 * 7) salaryOfEmployeesColulate(s, precent, 7);
+            
+            else if(s >= (10 ** 6 * 7 + 1) && s <= 10 ** 6 * 7) salaryOfEmployeesColulate(s, precent, 10);
+            
+            else salaryOfEmployeesColulate(s, precent, 15);
+        }
+
+        function salaryOfEmployeesColulate(SOE, pct, num){
+
+            pct = num;
+            let total = parseInt(SOE * pct / 100).toLocaleString("fi-FI");
+
+            if(!SOE){
+                alert("ກະລຸນາປ້ອມຄ່າ");
+                algorithm2();
+                return ;
+            } 
+
+            if(num === 0) return confirm("ບໍ່ໄດ້ເສຍພາສິ");
+
+            confirm(`ທ່ານຕ້ອງໄດ້ເສຍພາສີ ${pct}% ລວມເງິນທັງໝົດທີ່ທ່ານຕ້ອງໄດ້ຈ່າຍເເມ່ນ: ${total} kip`);
+        }
+
+    </script>
+</body>
+</html>
